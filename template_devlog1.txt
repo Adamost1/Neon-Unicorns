@@ -32,24 +32,23 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<Wow, we so BOSS bc...>
+- Our proposal was too simple, so we decided to implement varying AI difficulty, and each AI with its own strategies
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
->
+- 
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<wow! oo! etc!...>
+- 
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We changed ___ to ___ bc...
-<etc>
-<etc>
+
+- we changed the tic-tac-toe board from int[][] to String[][] because String[][] will allow the toString() to be easier to code. int[][] is also unnessesary because we won't need to compare the elements using > < >= or <=. We will only need to use .equals()
+
+- we decided to make the tic-tac-toe game 1 player because it is more challenging to design an AI rather than allow the user to play as 2 people. It is also more logical and fun to play a 1 player tic-tac-toe.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,7 +71,7 @@ LESSONS LEARNED
 
 yyyy-mm-dd
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+Alvin Ye :: <Thing member did.>
+Zane Wang :: <Thing member did.>
+Ahnaf Hasan :: <Thing member did.>
 ==============================================================
