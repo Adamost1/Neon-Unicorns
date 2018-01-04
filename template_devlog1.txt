@@ -1,10 +1,10 @@
-<Team Name (without word "team")>
-<Member Bubbles>
-<Member Buttercup>
-<Member Blossom>
+Neon Unicorns
+Alvin Ye
+Ahnaf Hasan
+Zane Wang
 pd <pd#>
 ---------------------
-<Project>
+Tic-Tac-Toe in the terminal
 
 
 
