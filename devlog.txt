@@ -2,10 +2,9 @@ Neon Unicorns
 Alvin Ye
 Ahnaf Hasan
 Zane Wang
-pd <pd#>
+pd 1
 ---------------------
 Tic-Tac-Toe in the terminal
-
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
