@@ -31,10 +31,15 @@ public String toString(){
 	return retVal.substring(0, retVal.length() - 10);
 }
 
-
-	public static void main(String[] args){
+    public static void startGame() {
 		Woo tic = new Woo();
 		System.out.println(tic);
+    }
+	public static void main(String[] args){
+	    startGame();
+	    System.out.print("what row: ");
+	    int row = Keyboard.readInt();
+	    System.out.println(row);
 
 
 	}
