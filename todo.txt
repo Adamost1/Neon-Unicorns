@@ -1,0 +1,16 @@
+﻿Period 1
+Neon Unicorns
+Alvin Ye, Ahnaf Hasan, Zane Wang
+
+
+To-Do
+
+
+1. Fix up uml and flowchart after getting further instructions from Mr.Brown
+
+2. Work on main method in Woo.java
+
+3. Make more methods, simplify main method by calling helper methods
+
+
+   1. Robustify code
