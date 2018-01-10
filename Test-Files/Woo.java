@@ -76,29 +76,29 @@ public class Woo{
     public static boolean isWin(){
     	for(String[] array: Board){
 
-    			if(array[0].equals(array[1]) && array[1].equals(array[2]) ){
-    				if(array[0].equals(" ")){
-    					return false;
-    				}
-    				else{
-    				return true;
-    			}
+	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){
+		if(array[0].equals(" ")){
+		    return false;
+		}
+		else{
+		    return true;
+		}
 
-    			}
+	    }
     		
     	}
 
 
     	for(int c = 0; c < Board.length; c ++){
 
-    			if(Board[0][c].equals(Board[1][c]) && Board[1][c].equals(Board[2][c]) ){
-    				if(Board[0][c].equals(" ")){
-    					return false;
-    				}
-    				else{
-    				return true;
-    			}
-    			}
+	    if(Board[0][c].equals(Board[1][c]) && Board[1][c].equals(Board[2][c]) ){
+		if(Board[0][c].equals(" ")){
+		    return false;
+		}
+		else{
+		    return true;
+		}
+	    }
     		
     	}
 
