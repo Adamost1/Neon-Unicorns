@@ -8,5 +8,5 @@
 * Try to get three in a row!
 
 ### To run the program, first you need to clone the github repo. Then, in the terminal, navigate to the directory for Neon-Unicorns, and lastly, type in the following lines:
-1. javac Woo.java
-2. java Woo
+1. `javac Woo.java`
+2. `java Woo`
