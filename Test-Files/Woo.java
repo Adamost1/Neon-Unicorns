@@ -123,27 +123,45 @@ public class Woo{
 
 	Woo tic = new Woo();
 	System.out.println(tic);
-	while (isWin() == false ) {
-	    int row = PinputR();
-	    int column = PinputC();
 
-	    while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
-	    	System.out.println( "Pick an empty spot!");
-	    	row = PinputR();
-	    	column = PinputC();
-	    }
 
-	    playerInput(row,column);
-	    System.out.println("Your Move:");
-	    System.out.print(tic);
-	    if(isWin()){
-	    	break;
+	
+        outer:
+	for(int counter = 0; counter <= 9; counter ++){
+	    while (isWin() == false ) {
+		int row = PinputR();
+		int column = PinputC();
+
+		while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
+		    System.out.println( "Pick an empty spot!");
+		    row = PinputR();
+		    column = PinputC();
+		}
+
+		playerInput(row,column);
+		System.out.println("Your Move:");
+		System.out.print(tic);
+		if(isWin()){
+		    System.out.println("YOU WIN!");
+		    break outer;
+		}
+		AIDiffE();
+		System.out.println("AI Move:");
+		System.out.print(tic);
+	
+
 	    }
-	    AIDiffE();
-	    System.out.println("AI Move:");
-	    System.out.print(tic);
+	    if(isWin() == true){
+	    System.out.println("Game Over. You lose.");
+	    break outer;
+	    }
+	    else{
+		System.out.println("It's a tie...");
+		break outer;
+	    }
+	    
 	}
-	System.out.println("Game Over");
-
     }
+    
+    
 }
