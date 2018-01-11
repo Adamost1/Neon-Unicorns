@@ -4,7 +4,7 @@ public class Woo{
 
     public static String[][] Board;
 
-    public Woo(){
+    public Woo(){ //constructor 
 	Board = new String[3][3];
 
 	for(int row = 0; row < Board.length; row ++){
@@ -15,7 +15,7 @@ public class Woo{
     }
 
 
-    public String toString(){
+    public String toString(){ //returns String representation of tic-tac-toe board
 	String retVal = "";
 
 	for(String[] array: Board){
