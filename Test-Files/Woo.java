@@ -4,7 +4,7 @@ public class Woo{
 
     public static String[][] Board;
 
-    public Woo(){
+    public Woo(){ //constructor 
 	Board = new String[3][3];
 
 	for(int row = 0; row < Board.length; row ++){
@@ -15,7 +15,7 @@ public class Woo{
     }
 
 
-    public String toString(){
+    public String toString(){ //returns String representation of tic-tac-toe board
 	String retVal = "";
 
 	for(String[] array: Board){
@@ -76,29 +76,29 @@ public class Woo{
     public static boolean isWin(){
     	for(String[] array: Board){
 
-    			if(array[0].equals(array[1]) && array[1].equals(array[2]) ){
-    				if(array[0].equals(" ")){
-    					return false;
-    				}
-    				else{
-    				return true;
-    			}
+	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){
+		if(array[0].equals(" ")){
+		    return false;
+		}
+		else{
+		    return true;
+		}
 
-    			}
+	    }
     		
     	}
 
 
     	for(int c = 0; c < Board.length; c ++){
 
-    			if(Board[0][c].equals(Board[1][c]) && Board[1][c].equals(Board[2][c]) ){
-    				if(Board[0][c].equals(" ")){
-    					return false;
-    				}
-    				else{
-    				return true;
-    			}
-    			}
+	    if(Board[0][c].equals(Board[1][c]) && Board[1][c].equals(Board[2][c]) ){
+		if(Board[0][c].equals(" ")){
+		    return false;
+		}
+		else{
+		    return true;
+		}
+	    }
     		
     	}
 
@@ -123,27 +123,45 @@ public class Woo{
 
 	Woo tic = new Woo();
 	System.out.println(tic);
-	while (isWin() == false ) {
-	    int row = PinputR();
-	    int column = PinputC();
 
-	    while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
-	    	System.out.println( "Pick an empty spot!");
-	    	row = PinputR();
-	    	column = PinputC();
-	    }
 
-	    playerInput(row,column);
-	    System.out.println("Your Move:");
-	    System.out.print(tic);
-	    if(isWin()){
-	    	break;
+	
+        outer:
+	for(int counter = 0; counter <= 9; counter ++){
+	    while (isWin() == false ) {
+		int row = PinputR();
+		int column = PinputC();
+
+		while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
+		    System.out.println( "Pick an empty spot!");
+		    row = PinputR();
+		    column = PinputC();
+		}
+
+		playerInput(row,column);
+		System.out.println("Your Move:");
+		System.out.print(tic);
+		if(isWin()){
+		    System.out.println("YOU WIN!");
+		    break outer;
+		}
+		AIDiffE();
+		System.out.println("AI Move:");
+		System.out.print(tic);
+	
+
 	    }
-	    AIDiffE();
-	    System.out.println("AI Move:");
-	    System.out.print(tic);
+	    if(isWin() == true){
+	    System.out.println("Game Over. You lose.");
+	    break outer;
+	    }
+	    else{
+		System.out.println("It's a tie...");
+		break outer;
+	    }
+	    
 	}
-	System.out.println("Game Over");
-
     }
+    
+    
 }

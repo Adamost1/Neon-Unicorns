@@ -12,5 +12,4 @@ To-Do
 
 3. Make more methods, simplify main method by calling helper methods
 
-
-   1. Robustify code
+4. Robustify code
