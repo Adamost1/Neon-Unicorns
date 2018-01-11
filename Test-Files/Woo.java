@@ -42,7 +42,7 @@ public class Woo{
     public static void AIDiffE() { //AI strategy for easy mode
 	int x = (int)(Math.random() * (Board.length) + 1);
 	int y = (int)(Math.random() * (Board[0].length) + 1);
-	while ( !(isEmpty(x - 1, y - 1)) ) {
+	while ( !(isEmpty(x - 1, y - 1))) {
 	    x = (int)(Math.random() * (Board.length) + 1);
 	    y = (int)(Math.random() * (Board[0].length) + 1);
 	    System.out.println("===========debugging==========\n" + x + "\t" + y + "\n===================");
@@ -105,6 +105,17 @@ public class Woo{
     	return false;
     }
 
+    public static boolean isFull() {
+	for (String[] row : Board) {
+	    for (String c : row) {
+		if (c.equals(" ")) {
+		    return false;
+		}
+	    }
+	}
+	return true;
+    }
+		    
     public static void main(String[] args) {
 
 
@@ -125,9 +136,9 @@ public class Woo{
 	System.out.println(tic);
 
 
-	
         outer:
-	for(int counter = 0; counter <= 9; counter ++){
+
+	while (isFull() == false) {
 	    while (isWin() == false ) {
 		int row = PinputR();
 		int column = PinputC();
@@ -145,6 +156,11 @@ public class Woo{
 		    System.out.println("YOU WIN!");
 		    break outer;
 		}
+		if (isFull() == true) {
+		    System.out.println("It's a tie");
+		    break outer;
+		}
+
 		AIDiffE();
 		System.out.println("AI Move:");
 		System.out.print(tic);
@@ -152,11 +168,7 @@ public class Woo{
 
 	    }
 	    if(isWin() == true){
-	    System.out.println("Game Over. You lose.");
-	    break outer;
-	    }
-	    else{
-		System.out.println("It's a tie...");
+		System.out.println("Game Over. You lose.");
 		break outer;
 	    }
 	    
