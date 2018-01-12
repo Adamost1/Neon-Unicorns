@@ -74,33 +74,35 @@ public class Woo{
     }
 
     public static boolean isWin(){
-    	for(String[] array: Board){
+    	for(String[] array: Board){ //checks across the rows to see if there is 3-in-a-row
 
-	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){
-		if(array[0].equals(" ")){
+	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){ //checks to see if the indeces contain the same String
+
+		if(array[0].equals(" ")){ //checks to see if the indeces are just spaces
 		    return false;
 		}
 		else{
 		    return true;
 		}
 
-	    }
-    		
-    	}
+	    }//close if loop  		
+    	}//close for loop
 
 
-    	for(int c = 0; c < Board.length; c ++){
+    	for(int c = 0; c < Board.length; c ++){ //checks down the columns to see if there is 3-in-a-row
 
 	    if(Board[0][c].equals(Board[1][c]) && Board[1][c].equals(Board[2][c]) ){
+
 		if(Board[0][c].equals(" ")){
 		    return false;
 		}
 		else{
 		    return true;
 		}
-	    }
+
+	    }//close if loop
     		
-    	}
+    	}//close for loop
 
     	return false;
     }
@@ -116,11 +118,11 @@ public class Woo{
 	return true;
     }
 
-    public static void gameIfPlayerFirst(){
-		Woo tic = new Woo();
+    public static void gameIfPlayerFirst(){ //it will take a parameter int difficulty. We can implement this LATER
+	Woo tic = new Woo();
 	System.out.println(tic);
-        outer:
 
+        outer:
 	while (isFull() == false) {
 	    while (isWin() == false ) {
 		int row = PinputR();
@@ -157,8 +159,65 @@ public class Woo{
 	    
 	}
 
+    }//end method
+
+    public static void aiStart(){ // it will take a parameter int difficulty. We can implement this LATER. This will populate the board with one value
+
+    	Board[(int) (Math.random() * 3)][ (int) (Math.random() * 3)] = "O";
     }
-		    
+
+    public static void gameIfAIFirst(){ //it will take a parameter int difficulty. We can implement this LATER
+	Woo tic = new Woo();
+	aiStart();
+	System.out.println("AI Move:\n" + tic);
+
+        outer:
+	while (isFull() == false) {
+	    while (isWin() == false ) {
+
+	    if (isFull() == true) { //checks for tie before the player moves because the AI will always be the one to fill up the board if it goes first
+		System.out.println("It's a tie");
+		break outer;
+	    }
+
+		int row = PinputR();
+		int column = PinputC();
+
+		while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
+		    System.out.println( "Pick an empty spot!");
+		    row = PinputR();
+		    column = PinputC();
+		}
+
+		playerInput(row,column);
+		System.out.println("Your Move:");
+		System.out.print(tic);
+		if(isWin()){ //if 3-in-a-row after player moves, it means the player wins
+		    System.out.println("YOU WIN!");
+		    break outer;
+		}
+		//dont need to check isFull() here because if AI goes first, the player will never be the last one to fill up the board
+
+		AIDiffE();
+		System.out.println("AI Move:");
+		System.out.print(tic);
+	
+
+	    }
+	    if(isWin() == true){ //if 3-in-a-row after AI moves, it means the AI wins
+		System.out.println("Game Over. You lose.");
+		break outer;
+	    }
+
+	    
+	}
+
+    }//end method
+
+
+
+
+
     public static void main(String[] args) {
 
 
@@ -177,10 +236,10 @@ public class Woo{
 
 
 
+	gameIfAIFirst();
 
-
- //====================================IF PLAYER GOES FIRST==============
-	gameIfPlayerFirst();
+	//====================================IF PLAYER GOES FIRST==============
+	//gameIfPlayerFirst();
 	//==================================================================================
     }
     
