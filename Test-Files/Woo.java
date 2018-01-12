@@ -115,27 +115,10 @@ public class Woo{
 	}
 	return true;
     }
-		    
-    public static void main(String[] args) {
 
-
-	System.out.println("Choose your difficulty");
-	System.out.println("1. Easy\n2. Medium\n3. Hard");
-	int difficulty = Keyboard.readInt();
-	
-	while (difficulty != 1 && difficulty != 2 && difficulty != 3) {
-	    System.out.println("Not a viable option");
-	    System.out.println("Choose your difficulty from 1-3");
-	    System.out.println("1. Easy\n2. Medium\n3. Hard");
-	    difficulty = Keyboard.readInt();
-	    
-	}
-
-
-	Woo tic = new Woo();
+    public static void gameIfPlayerFirst(){
+		Woo tic = new Woo();
 	System.out.println(tic);
-
-
         outer:
 
 	while (isFull() == false) {
@@ -173,6 +156,32 @@ public class Woo{
 	    }
 	    
 	}
+
+    }
+		    
+    public static void main(String[] args) {
+
+
+	System.out.println("Choose your difficulty");
+	System.out.println("1. Easy\n2. Medium\n3. Hard");
+	int difficulty = Keyboard.readInt();
+	
+	while (difficulty != 1 && difficulty != 2 && difficulty != 3) {
+	    System.out.println("Not a viable option");
+	    System.out.println("Choose your difficulty from 1-3");
+	    System.out.println("1. Easy\n2. Medium\n3. Hard");
+	    difficulty = Keyboard.readInt();
+	    
+	}
+
+
+
+
+
+
+ //====================================IF PLAYER GOES FIRST==============
+	gameIfPlayerFirst();
+	//==================================================================================
     }
     
     
