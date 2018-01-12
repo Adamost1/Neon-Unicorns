@@ -104,6 +104,15 @@ public class Woo{
     		
     	}//close for loop
 
+	if ((Board[0][0].equals(Board[1][1]) && Board[1][1].equals(Board[2][2])) || (Board[0][2].equals(Board[1][1]) && Board[1][1].equals(Board[2][0]))) {
+	    if (Board[1][1].equals(" ")) {
+		return false;
+	    }// close nested-if loop
+	    else {
+		return true;
+	    }// close else
+	}// close if loop
+
     	return false;
     }
 
