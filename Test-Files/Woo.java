@@ -56,42 +56,42 @@ public class Woo{
 
     	for(int r = 0; r < Board.length; r ++){//checks row by row for two in a row
 
-    		if(
-    			(Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
-    			(Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
-    			(Board[r][1].equals(Board[r][0]) && !(Board[r][1].equals(Board[r][2])) && !(Board[r][1].equals(" ")) ) ||
-    			(Board[r][1].equals(Board[r][2]) && !(Board[r][1].equals(Board[r][0])) && !(Board[r][1].equals(" ")) )     			
-    			)
+	    if(
+	       (Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
+	       (Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
+	       (Board[r][1].equals(Board[r][0]) && !(Board[r][1].equals(Board[r][2])) && !(Board[r][1].equals(" ")) ) ||
+	       (Board[r][1].equals(Board[r][2]) && !(Board[r][1].equals(Board[r][0])) && !(Board[r][1].equals(" ")) )     			
+	       )
     		{
-    			for(int c = 0; c < Board.length; c ++){
-    				if(Board[r][c].equals(" ")){
-    					Board[r][c] = "O";
-    					return;
-    				}
-    			}
+		    for(int c = 0; c < Board.length; c ++){
+			if(Board[r][c].equals(" ")){
+			    Board[r][c] = "O";
+			    return;
+			}
+		    }
     		}//close if
-		}//close for
+	}//close for
 
-    	for(int c = 0; c < Board.length; c ++){//checks column by column for two in a row
+    	for(int c = 0; c < Board.length; c ++){//checks column by column for two in a column
 
-    		if(
-    			(Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
-    			(Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
-    			(Board[1][c].equals(Board[0][c]) && !(Board[1][c].equals(Board[2][c])) && !(Board[1][c].equals(" ")) ) ||
-    			(Board[1][c].equals(Board[2][c]) && !(Board[1][c].equals(Board[0][c])) && !(Board[1][c].equals(" ")) )     			
-    			)
+	    if(
+	       (Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
+	       (Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
+	       (Board[1][c].equals(Board[0][c]) && !(Board[1][c].equals(Board[2][c])) && !(Board[1][c].equals(" ")) ) ||
+	       (Board[1][c].equals(Board[2][c]) && !(Board[1][c].equals(Board[0][c])) && !(Board[1][c].equals(" ")) )     			
+	       )
     		{
-    			for(int r = 0; r < Board.length; r ++){
-    				if(Board[r][c].equals(" ")){
-    					Board[r][c] = "O";
-    					return;
-    				}
-    			}
+		    for(int r = 0; r < Board.length; r ++){
+			if(Board[r][c].equals(" ")){
+			    Board[r][c] = "O";
+			    return;
+			}
+		    }
     		}//close if
-		}//close for
+	}//close for
 
 
- 		AIDiffE();
+	AIDiffE(); //resorts to AIDiffE(), or random moves when there are not two elements in a row or column
 
 
 
@@ -120,7 +120,7 @@ public class Woo{
 	return column;
     }
 
-    public static boolean isWin(){
+    public static boolean isWin(){ //checks to see if there is a 3-in-a-row
     	for(String[] array: Board){ //checks across the rows to see if there is 3-in-a-row
 
 	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){ //checks to see if the indeces contain the same String
@@ -161,9 +161,11 @@ public class Woo{
 	}// close if loop
 
     	return false;
-    }
 
-    public static boolean isFull() {
+
+    }//end method
+
+    public static boolean isFull() { //checks to see if the Board is full of non-spaces
 	for (String[] row : Board) {
 	    for (String c : row) {
 		if (c.equals(" ")) {
@@ -175,16 +177,16 @@ public class Woo{
     }
 
 
-    public static void chooseAIDifficulty(int difficulty){
+    public static void chooseAIDifficulty(int difficulty){ //it executes the correct method according to the difficulty chosen
     	if(difficulty == 1){
-    		AIDiffE();
+	    AIDiffE();
     	}
     	if(difficulty == 2){
-    		AIDiffM();
+	    AIDiffM();
     	}
     }
 
-    public static void gameIfPlayerFirst(int difficulty){ //it will take a parameter int difficulty. We can implement this LATER
+    public static void gameIfPlayerFirst(int difficulty){  //plays the game if player goes first
 	Woo tic = new Woo();
 	System.out.println(tic);
 
@@ -227,24 +229,29 @@ public class Woo{
 
     }//end method
 
-    public static void aiStart(){ // it will take a parameter int difficulty. We can implement this LATER. This will populate the board with one value
+    public static void aiStart(int difficulty){ 
 
-    	Board[(int) (Math.random() * 3)][ (int) (Math.random() * 3)] = "O";
+    	if(difficulty == 3){
+	    Board[2][2] = "O";
+    	}
+    	else{
+	    Board[(int) (Math.random() * 3)][ (int) (Math.random() * 3)] = "O";
+	}
     }
 
-    public static void gameIfAIFirst(){ //it will take a parameter int difficulty. We can implement this LATER
+    public static void gameIfAIFirst(int difficulty){ //plays the game if AI goes first
 	Woo tic = new Woo();
-	aiStart();
+	aiStart(difficulty);
 	System.out.println("AI Move:\n" + tic);
 
         outer:
 	while (isFull() == false) {
 	    while (isWin() == false ) {
 
-	    if (isFull() == true) { //checks for tie before the player moves because the AI will always be the one to fill up the board if it goes first
-		System.out.println("It's a tie");
-		break outer;
-	    }
+		if (isFull() == true) { //checks for tie before the player moves because the AI will always be the one to fill up the board if it goes first
+		    System.out.println("It's a tie");
+		    break outer;
+		}
 
 		int row = PinputR();
 		int column = PinputC();
@@ -264,7 +271,7 @@ public class Woo{
 		}
 		//dont need to check isFull() here because if AI goes first, the player will never be the last one to fill up the board
 
-		AIDiffE();
+		chooseAIDifficulty(difficulty);
 		System.out.println("AI Move:");
 		System.out.print(tic);
 	
@@ -302,10 +309,10 @@ public class Woo{
 
 
 
-	//gameIfAIFirst();
+	gameIfAIFirst(difficulty);
 
 	//====================================IF PLAYER GOES FIRST==============
-	gameIfPlayerFirst(difficulty);
+	//gameIfPlayerFirst(difficulty);
 	//==================================================================================
     }
     
