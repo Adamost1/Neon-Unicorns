@@ -6,6 +6,4 @@ Alvin Ye, Ahnaf Hasan, Zane Wang
 To-Do
 
 
-1. Code AiDiffH()
-
-2. Update uml diagram and flowchart
+1. NONE
