@@ -90,6 +90,34 @@ public class Woo{
     		}//close if
 	}//close for
 
+	for (int c = 1; c < Board.length - 1; c ++) {
+	    if (
+		(Board[c][c].equals(Board[c - 1][c - 1]) && !(Board[c][c].equals(Board[c + 1][c + 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c][c].equals(Board[c + 1][c + 1]) && !(Board[c][c].equals(Board[c - 1][c - 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c + 1][c + 1].equals(Board[c - 1][c - 1]) && !(Board[c][c].equals(Board[c + 1][c + 1])) && !(Board[c + 1][c + 1].equals(" ")) )) {
+		for(int r = 0; r < Board.length; r ++) {
+		    if (Board[r][r].equals(" ")) {
+			Board[r][r] = "O";
+			return;
+		    }
+		}
+	    }// closes if
+
+	    if (		
+		(Board[c][c].equals(Board[c - 1][c + 1]) && !(Board[c][c].equals(Board[c + 1][c - 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c][c].equals(Board[c + 1][c - 1]) && !(Board[c][c].equals(Board[c - 1][c + 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c + 1][c - 1].equals(Board[c - 1][c + 1]) && !(Board[c][c].equals(Board[c + 1][c - 1])) && !(Board[c + 1][c - 1].equals(" ")) )
+		)
+		{
+		    for(int r = 0; r < Board.length; r ++){
+			if (Board[r][2 - r].equals(" ")){
+			    Board[r][2 - r] = "O";
+			    return;
+			}
+		    }
+		}
+	}
+	
 
 	AIDiffE(); //resorts to AIDiffE(), or random moves when there are not two elements in a row or column
 
@@ -287,13 +315,7 @@ public class Woo{
 
     }//end method
 
-
-
-
-
-    public static void main(String[] args) {
-
-
+    public static void startGame() {
 	System.out.println("Choose your difficulty");
 	System.out.println("1. Easy\n2. Medium\n3. Hard");
 	int difficulty = Keyboard.readInt();
@@ -306,10 +328,24 @@ public class Woo{
 	    
 	}
 
+	int coin = (int) (Math.random() * 2);
+
+	if (coin == 0) {
+	    gameIfAIFirst(difficulty);
+	}
+
+	else {
+	    gameIfPlayerFirst(difficulty);
+	}
+    }
 
 
 
-	gameIfAIFirst(difficulty);
+    public static void main(String[] args) {
+
+
+	startGame();
+
 
 	//====================================IF PLAYER GOES FIRST==============
 	//gameIfPlayerFirst(difficulty);

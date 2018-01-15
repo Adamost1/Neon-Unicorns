@@ -7,7 +7,7 @@ public class Woo{
     public Woo(){ //constructor 
 	Board = new String[3][3];
 
-	for(int row = 0; row < Board.length; row ++){
+	for(int row = 0; row < Board.length; row ++){ //fills the whole array with spaces
 	    for(int col = 0; col < Board.length; col ++){
 		Board[row][col] = " ";
 	    }
@@ -29,15 +29,16 @@ public class Woo{
 	}
 
 	return retVal.substring(0, retVal.length() - 10);
-    }
+    }//end method
 
     public static void playerInput(int row, int column) {
 	Board[row - 1][column - 1] = "X";
-    }
+    }//end method
 
     public static boolean isEmpty(int row, int column) {
 	return Board[row][column].equals(" ");
-    }
+    }//end method
+
 
     public static void AIDiffE() { //AI strategy for easy mode
 	int x = (int)(Math.random() * (Board.length) + 1);
@@ -48,6 +49,80 @@ public class Woo{
 	    System.out.println("===========debugging==========\n" + x + "\t" + y + "\n===================");
 	}
 	Board[x - 1][y - 1] = "O";
+    }
+
+    public static void AIDiffM(){
+
+
+    	for(int r = 0; r < Board.length; r ++){//checks row by row for two in a row
+
+	    if(
+	       (Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
+	       (Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
+	       (Board[r][1].equals(Board[r][0]) && !(Board[r][1].equals(Board[r][2])) && !(Board[r][1].equals(" ")) ) ||
+	       (Board[r][1].equals(Board[r][2]) && !(Board[r][1].equals(Board[r][0])) && !(Board[r][1].equals(" ")) )     			
+	       )
+    		{
+		    for(int c = 0; c < Board.length; c ++){
+			if(Board[r][c].equals(" ")){
+			    Board[r][c] = "O";
+			    return;
+			}
+		    }
+    		}//close if
+	}//close for
+
+    	for(int c = 0; c < Board.length; c ++){//checks column by column for two in a column
+
+	    if(
+	       (Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
+	       (Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
+	       (Board[1][c].equals(Board[0][c]) && !(Board[1][c].equals(Board[2][c])) && !(Board[1][c].equals(" ")) ) ||
+	       (Board[1][c].equals(Board[2][c]) && !(Board[1][c].equals(Board[0][c])) && !(Board[1][c].equals(" ")) )     			
+	       )
+    		{
+		    for(int r = 0; r < Board.length; r ++){
+			if(Board[r][c].equals(" ")){
+			    Board[r][c] = "O";
+			    return;
+			}
+		    }
+    		}//close if
+	}//close for
+
+	for (int c = 1; c < Board.length - 1; c ++) {
+	    if (
+		(Board[c][c].equals(Board[c - 1][c - 1]) && !(Board[c][c].equals(Board[c + 1][c + 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c][c].equals(Board[c + 1][c + 1]) && !(Board[c][c].equals(Board[c - 1][c - 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c + 1][c + 1].equals(Board[c - 1][c - 1]) && !(Board[c][c].equals(Board[c + 1][c + 1])) && !(Board[c + 1][c + 1].equals(" ")) )) {
+		for(int r = 0; r < Board.length; r ++) {
+		    if (Board[r][r].equals(" ")) {
+			Board[r][r] = "O";
+			return;
+		    }
+		}
+	    }// closes if
+
+	    if (		
+		(Board[c][c].equals(Board[c - 1][c + 1]) && !(Board[c][c].equals(Board[c + 1][c - 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c][c].equals(Board[c + 1][c - 1]) && !(Board[c][c].equals(Board[c - 1][c + 1])) && !(Board[c][c].equals(" ")) ) ||
+		(Board[c + 1][c - 1].equals(Board[c - 1][c + 1]) && !(Board[c][c].equals(Board[c + 1][c - 1])) && !(Board[c + 1][c - 1].equals(" ")) )
+		)
+		{
+		    for(int r = 0; r < Board.length; r ++){
+			if (Board[r][2 - r].equals(" ")){
+			    Board[r][2 - r] = "O";
+			    return;
+			}
+		    }
+		}
+	}
+	
+
+	AIDiffE(); //resorts to AIDiffE(), or random moves when there are not two elements in a row or column
+
+
+
     }
     
     public static int PinputR() { //reads the user input for row and returns the input
@@ -73,39 +148,52 @@ public class Woo{
 	return column;
     }
 
-    public static boolean isWin(){
-    	for(String[] array: Board){
+    public static boolean isWin(){ //checks to see if there is a 3-in-a-row
+    	for(String[] array: Board){ //checks across the rows to see if there is 3-in-a-row
 
-	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){
-		if(array[0].equals(" ")){
+	    if(array[0].equals(array[1]) && array[1].equals(array[2]) ){ //checks to see if the indeces contain the same String
+
+		if(array[0].equals(" ")){ //checks to see if the indeces are just spaces
 		    return false;
 		}
 		else{
 		    return true;
 		}
 
-	    }
-    		
-    	}
+	    }//close if loop  		
+    	}//close for loop
 
 
-    	for(int c = 0; c < Board.length; c ++){
+    	for(int c = 0; c < Board.length; c ++){ //checks down the columns to see if there is 3-in-a-row
 
 	    if(Board[0][c].equals(Board[1][c]) && Board[1][c].equals(Board[2][c]) ){
+
 		if(Board[0][c].equals(" ")){
 		    return false;
 		}
 		else{
 		    return true;
 		}
-	    }
+
+	    }//close if loop
     		
-    	}
+    	}//close for loop
+
+	if ((Board[0][0].equals(Board[1][1]) && Board[1][1].equals(Board[2][2])) || (Board[0][2].equals(Board[1][1]) && Board[1][1].equals(Board[2][0]))) {
+	    if (Board[1][1].equals(" ")) {
+		return false;
+	    }// close nested-if loop
+	    else {
+		return true;
+	    }// close else
+	}// close if loop
 
     	return false;
-    }
 
-    public static boolean isFull() {
+
+    }//end method
+
+    public static boolean isFull() { //checks to see if the Board is full of non-spaces
 	for (String[] row : Board) {
 	    for (String c : row) {
 		if (c.equals(" ")) {
@@ -115,29 +203,22 @@ public class Woo{
 	}
 	return true;
     }
-		    
-    public static void main(String[] args) {
 
 
-	System.out.println("Choose your difficulty");
-	System.out.println("1. Easy\n2. Medium\n3. Hard");
-	int difficulty = Keyboard.readInt();
-	
-	while (difficulty != 1 && difficulty != 2 && difficulty != 3) {
-	    System.out.println("Not a viable option");
-	    System.out.println("Choose your difficulty from 1-3");
-	    System.out.println("1. Easy\n2. Medium\n3. Hard");
-	    difficulty = Keyboard.readInt();
-	    
-	}
+    public static void chooseAIDifficulty(int difficulty){ //it executes the correct method according to the difficulty chosen
+    	if(difficulty == 1){
+	    AIDiffE();
+    	}
+    	if(difficulty == 2){
+	    AIDiffM();
+    	}
+    }
 
-
+    public static void gameIfPlayerFirst(int difficulty){  //plays the game if player goes first
 	Woo tic = new Woo();
 	System.out.println(tic);
 
-
         outer:
-
 	while (isFull() == false) {
 	    while (isWin() == false ) {
 		int row = PinputR();
@@ -152,7 +233,7 @@ public class Woo{
 		playerInput(row,column);
 		System.out.println("Your Move:");
 		System.out.print(tic);
-		if(isWin()){
+		if(isWin() == true){
 		    System.out.println("YOU WIN!");
 		    break outer;
 		}
@@ -161,7 +242,7 @@ public class Woo{
 		    break outer;
 		}
 
-		AIDiffE();
+		chooseAIDifficulty(difficulty); //uses parameter to choose difficulty
 		System.out.println("AI Move:");
 		System.out.print(tic);
 	
@@ -173,6 +254,102 @@ public class Woo{
 	    }
 	    
 	}
+
+    }//end method
+
+    public static void aiStart(int difficulty){ 
+
+    	if(difficulty == 3){
+	    Board[2][2] = "O";
+    	}
+    	else{
+	    Board[(int) (Math.random() * 3)][ (int) (Math.random() * 3)] = "O";
+	}
+    }
+
+    public static void gameIfAIFirst(int difficulty){ //plays the game if AI goes first
+	Woo tic = new Woo();
+	aiStart(difficulty);
+	System.out.println("AI Move:\n" + tic);
+
+        outer:
+	while (isFull() == false) {
+	    while (isWin() == false ) {
+
+		if (isFull() == true) { //checks for tie before the player moves because the AI will always be the one to fill up the board if it goes first
+		    System.out.println("It's a tie");
+		    break outer;
+		}
+
+		int row = PinputR();
+		int column = PinputC();
+
+		while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
+		    System.out.println( "Pick an empty spot!");
+		    row = PinputR();
+		    column = PinputC();
+		}
+
+		playerInput(row,column);
+		System.out.println("Your Move:");
+		System.out.print(tic);
+		if(isWin()){ //if 3-in-a-row after player moves, it means the player wins
+		    System.out.println("YOU WIN!");
+		    break outer;
+		}
+		//dont need to check isFull() here because if AI goes first, the player will never be the last one to fill up the board
+
+		chooseAIDifficulty(difficulty);
+		System.out.println("AI Move:");
+		System.out.print(tic);
+	
+
+	    }
+	    if(isWin() == true){ //if 3-in-a-row after AI moves, it means the AI wins
+		System.out.println("Game Over. You lose.");
+		break outer;
+	    }
+
+	    
+	}
+
+    }//end method
+
+    public static void startGame() {
+	System.out.println("Choose your difficulty");
+	System.out.println("1. Easy\n2. Medium\n3. Hard");
+	int difficulty = Keyboard.readInt();
+	
+	while (difficulty != 1 && difficulty != 2 && difficulty != 3) {
+	    System.out.println("Not a viable option");
+	    System.out.println("Choose your difficulty from 1-3");
+	    System.out.println("1. Easy\n2. Medium\n3. Hard");
+	    difficulty = Keyboard.readInt();
+	    
+	}
+
+	int coin = (int) (Math.random() * 2);
+
+	if (coin == 0) {
+	    gameIfAIFirst(difficulty);
+	}
+
+	else {
+	    gameIfPlayerFirst(difficulty);
+	}
+    }
+
+
+
+    public static void main(String[] args) {
+
+
+	startGame();
+
+
+	//====================================IF PLAYER GOES FIRST==============
+	//gameIfPlayerFirst(difficulty);
+	//==================================================================================
     }
     
     
