@@ -125,7 +125,8 @@ public class Woo{
     public static void AIDiffH() {
 	if (isEmpty(1,1)) {
 	    Board[1][1] = "O";
-	}else{
+	}
+	else if (isEmpty(0,0) && isEmpty(0,2) && isEmpty(2,0) && isEmpty(2,2)) {
 	    int checker = 1 + (int)(Math.random()* 4);
 	    switch (checker) {
 	    case 1: if (isEmpty(0,0)) {
@@ -147,14 +148,11 @@ public class Woo{
 		    Board[0][2] = "O";
 		    return;
 		}
-		break;
-	    }
-	    if (!(isEmpty(0,0)) && !(isEmpty(0,2)) && !(isEmpty(2,2)) && !(isEmpty(2,0))) {
-		if ( Board[0][0] == "O" && Board[2][0] == "O") {
-		    Board[1][0] = "O";
-		}
 	    }
 	}
+	else {
+	    AIDiffM();
+	}   
     }
 
     public static int PinputR() { //reads the user input for row and returns the input
@@ -295,11 +293,10 @@ public class Woo{
     public static void aiStart(int difficulty){ 
 
     	if(difficulty == 3){
-	    //Board[2][2] = "O";
 	    AIDiffH();
     	}
     	else{
-	    Board[(int) (Math.random() * 3)][ (int) (Math.random() * 3)] = "O";
+	    AIDiffM();
 	}
     }
 
@@ -365,16 +362,18 @@ public class Woo{
 	    
 	}
 
+	
+	    
 	int coin = (int) (Math.random() * 2); //randomly chooses who goes first
-
+	    
 	if (coin == 0) {
 	    gameIfAIFirst(difficulty);
-	}
-
+	    }
+	
 	else {
 	    gameIfPlayerFirst(difficulty);
 	}
-    }//end method
+    }
 
 
 
