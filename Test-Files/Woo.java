@@ -7,7 +7,7 @@ public class Woo{
     public Woo(){ //constructor 
 	Board = new String[3][3];
 
-	for(int row = 0; row < Board.length; row ++){
+	for(int row = 0; row < Board.length; row ++){ //fills the whole array with spaces
 	    for(int col = 0; col < Board.length; col ++){
 		Board[row][col] = " ";
 	    }
@@ -29,15 +29,48 @@ public class Woo{
 	}
 
 	return retVal.substring(0, retVal.length() - 10);
-    }
+    }//end method
 
     public static void playerInput(int row, int column) {
 	Board[row - 1][column - 1] = "X";
-    }
+    }//end method
 
     public static boolean isEmpty(int row, int column) {
 	return Board[row][column].equals(" ");
-    }
+    }//end method
+
+
+    public static void checkForTwoInARow(){ 
+    	int counter;
+    	int row = 0;
+    	int column = 0;
+
+    	for(int r = 0; r < Board.length; r ++){ //checks row by row
+    		counter = 0;
+    		for(int c = 0; c < Board.length; c ++){
+    			if(Board[r][c].equals(" ")){
+    				counter ++;
+    				row = r;
+    				column = c;
+    			}
+    		}
+    		if(counter == 1){
+    			Board[row][column] = "O";
+    		}    		
+    	}//close for loop
+
+
+    }//close method
+
+public static int checkForTwoInAColumn(){
+	int counter;
+    	int row = 0;
+    	int column = 0;
+
+return -1;
+}
+
+
 
     public static void AIDiffE() { //AI strategy for easy mode
 	int x = (int)(Math.random() * (Board.length) + 1);
@@ -48,6 +81,53 @@ public class Woo{
 	    System.out.println("===========debugging==========\n" + x + "\t" + y + "\n===================");
 	}
 	Board[x - 1][y - 1] = "O";
+    }
+
+    public static void AIDiffM(){
+
+    	int counter = 0;
+    	int row = 0;
+    	int column = 0;
+
+
+    	for(int r = 0; r < Board.length; r ++){ //checks row by row for two-in-a-row
+    		counter = 0;
+    		for(int c = 0; c < Board.length; c ++){
+    			if(Board[r][c].equals(" ")){
+    				counter ++;
+    				row = r;
+    				column = c;
+    			}
+    		}
+
+    	}//close for loop
+
+    		if(counter == 1){
+    			Board[row][column] = "O";
+    			return;
+    		}
+ 
+
+	    	for(int c = 0; c < Board.length; c ++){ //checks column by column for two-in-a-row
+    		counter = 0;
+    		for(int r = 0; r < Board.length; r ++){
+    			if(Board[r][c].equals(" ")){
+    				counter ++;
+    				row = r;
+    				column = c;
+    			}
+    		}
+    	}//close for loop
+
+    		if(counter == 1){
+    			Board[row][column] = "O";
+    			return;
+    		}
+
+ 		AIDiffE();
+
+
+
     }
     
     public static int PinputR() { //reads the user input for row and returns the input
@@ -127,7 +207,17 @@ public class Woo{
 	return true;
     }
 
-    public static void gameIfPlayerFirst(){ //it will take a parameter int difficulty. We can implement this LATER
+
+    public static void chooseAIDifficulty(int difficulty){
+    	if(difficulty == 1){
+    		AIDiffE();
+    	}
+    	if(difficulty == 2){
+    		AIDiffM();
+    	}
+    }
+
+    public static void gameIfPlayerFirst(int difficulty){ //it will take a parameter int difficulty. We can implement this LATER
 	Woo tic = new Woo();
 	System.out.println(tic);
 
@@ -146,7 +236,7 @@ public class Woo{
 		playerInput(row,column);
 		System.out.println("Your Move:");
 		System.out.print(tic);
-		if(isWin()){
+		if(isWin() == true){
 		    System.out.println("YOU WIN!");
 		    break outer;
 		}
@@ -155,7 +245,7 @@ public class Woo{
 		    break outer;
 		}
 
-		AIDiffE();
+		chooseAIDifficulty(difficulty); //uses parameter to choose difficulty
 		System.out.println("AI Move:");
 		System.out.print(tic);
 	
@@ -245,10 +335,10 @@ public class Woo{
 
 
 
-	gameIfAIFirst();
+	//gameIfAIFirst();
 
 	//====================================IF PLAYER GOES FIRST==============
-	//gameIfPlayerFirst();
+	gameIfPlayerFirst(difficulty);
 	//==================================================================================
     }
     
