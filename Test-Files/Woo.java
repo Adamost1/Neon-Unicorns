@@ -12,7 +12,7 @@ public class Woo{
 		Board[row][col] = " ";
 	    }
 	}
-    }
+    }//end constructor
 
 
     public String toString(){ //returns String representation of tic-tac-toe board
@@ -26,14 +26,17 @@ public class Woo{
 	    }
 	    retVal = (retVal.substring(0,retVal.length() - 1) + " \n");
 	    retVal += ("_________\n");
-	}
+	}//end method
+
 
 	return retVal.substring(0, retVal.length() - 10);
     }//end method
 
+
     public static void playerInput(int row, int column) {
 	Board[row - 1][column - 1] = "X";
     }//end method
+
 
     public static boolean isEmpty(int row, int column) {
 	return Board[row][column].equals(" ");
@@ -48,13 +51,11 @@ public class Woo{
 	    y = (int)(Math.random() * (Board[0].length) + 1);
 	}
 	Board[x - 1][y - 1] = "O";
-    }
+    }//end method
+
 
     public static void AIDiffM(){
-
-
     	for(int r = 0; r < Board.length; r ++){//checks row by row for two in a row
-
 	    if(
 	       (Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
 	       (Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
@@ -71,7 +72,6 @@ public class Woo{
 	}//close for
 
     	for(int c = 0; c < Board.length; c ++){//checks column by column for two in a column
-
 	    if(
 	       (Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
 	       (Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
@@ -87,12 +87,12 @@ public class Woo{
     		}//close if
 	}//close for
 
-	    if ( //checks the first diagonal, going from top left to bottom right, for 2 elements 
-		(Board[0][0].equals(Board[1][1]) && !(Board[0][0].equals(Board[2][2])) && !(Board[0][0].equals(" ")) ) ||
-		(Board[0][0].equals(Board[2][2]) && !(Board[0][0].equals(Board[1][1])) && !(Board[0][0].equals(" ")) ) ||
-		(Board[1][1].equals(Board[2][2]) && !(Board[1][1].equals(Board[0][0])) && !(Board[1][1].equals(" ")) )
-		) 
-		{
+	if ( //checks the first diagonal, going from top left to bottom right, for 2 elements 
+	    (Board[0][0].equals(Board[1][1]) && !(Board[0][0].equals(Board[2][2])) && !(Board[0][0].equals(" ")) ) ||
+	    (Board[0][0].equals(Board[2][2]) && !(Board[0][0].equals(Board[1][1])) && !(Board[0][0].equals(" ")) ) ||
+	    (Board[1][1].equals(Board[2][2]) && !(Board[1][1].equals(Board[0][0])) && !(Board[1][1].equals(" ")) )
+	     ) 
+	    {
 		for(int i = 0; i < Board.length; i ++) {
 		    if (Board[i][i].equals(" ")) {
 			Board[i][i] = "O";
@@ -101,32 +101,30 @@ public class Woo{
 		}
 	    }// closes if
 
-	    if (		
-		(Board[0][2].equals(Board[1][1]) && !(Board[0][2].equals(Board[2][0])) && !(Board[0][2].equals(" ")) ) ||
-		(Board[0][2].equals(Board[2][0]) && !(Board[0][2].equals(Board[1][1])) && !(Board[0][2].equals(" ")) ) ||
-		(Board[1][1].equals(Board[2][0]) && !(Board[1][1].equals(Board[0][2])) && !(Board[1][1].equals(" ")) )
-		)
-		{
-		    for(int i = 0; i < Board.length; i ++){
-			if (Board[i][2 - i].equals(" ")){
-			    Board[i][2 - i] = "O";
-			    return;
-			}
+	if (		
+	    (Board[0][2].equals(Board[1][1]) && !(Board[0][2].equals(Board[2][0])) && !(Board[0][2].equals(" ")) ) ||
+	    (Board[0][2].equals(Board[2][0]) && !(Board[0][2].equals(Board[1][1])) && !(Board[0][2].equals(" ")) ) ||
+	    (Board[1][1].equals(Board[2][0]) && !(Board[1][1].equals(Board[0][2])) && !(Board[1][1].equals(" ")) )
+			)
+	    {
+		for(int i = 0; i < Board.length; i ++){
+		    if (Board[i][2 - i].equals(" ")){
+			Board[i][2 - i] = "O";
+			return;
 		    }
 		}
-	
-	
+	    }
 
 	AIDiffE(); //resorts to AIDiffE(), or random moves when there are not two elements in a row or column
     }//end method
 
 
     public static void AIDiffH() {
-	if (isEmpty(1,1)) {
+	if (isEmpty(1,1)) { //checks to see if the middle is empty. If it is, then initiate board with "O" in the middle
 	    Board[1][1] = "O";
 	}
-	else if (isEmpty(0,0) && isEmpty(0,2) && isEmpty(2,0) && isEmpty(2,2)) {
-	    if (Board[0][1].equals("X")) {
+	else if (isEmpty(0,0) && isEmpty(0,2) && isEmpty(2,0) && isEmpty(2,2)) { //checks to see if diagonals are empty
+	    if (Board[0][1].equals("X")) {  //if player responds with this placement, AI will place it in two possible places to set up the "death trap"
 		int coin = (int) Math.random() * 2;
 		if (coin == 0) {
 		    Board[2][0] = "O";
@@ -136,7 +134,7 @@ public class Woo{
 		}
 	    }
 	    
-	    else if (Board[2][1].equals("X")) {
+	    else if (Board[2][1].equals("X")) {//if player responds with this placement, AI will place it in two possible places to set up the "death trap"
 		int coin = (int) Math.random() * 2;
 		if (coin == 0) {
 		    Board[0][0] = "O";
@@ -146,7 +144,7 @@ public class Woo{
 		}
 	    }
 
-	    else if (Board[1][0].equals("X")) {
+	    else if (Board[1][0].equals("X")) {//if player responds with this placement, AI will place it in two possible places to set up the "death trap"
 		int coin = (int) Math.random() * 2;
 		if (coin == 0) {
 		    Board[0][2] = "O";
@@ -156,7 +154,7 @@ public class Woo{
 		}
 	    }
 
-	    else if (Board[1][2].equals("X")) {
+	    else if (Board[1][2].equals("X")) {//if player responds with this placement, AI will place it in two possible places to set up the "death trap"
 		int coin = (int) Math.random() * 2;
 		if (coin == 0) {
 		    Board[0][0] = "O";
@@ -165,7 +163,8 @@ public class Woo{
 		    Board[2][0] = "O";
 		}
 	    }
-	    else {
+
+	    else {//if the sides of the tic-tac-toe board aren't occupied yet, the AI starts to set up the "death trap" by placing an "O" at a random diagonal
 		int coin = 1 + (int) (Math.random() * 4);
 		switch (coin) {
 		case 1: Board[0][0] = "O";
@@ -177,12 +176,14 @@ public class Woo{
 		case 4: Board[2][2] = "O";
 		    break;
 		}
-	    }	    
+	    }//close else	
+
 	}
-	else {
+	else { //once the "death trap" is set up, it will proceed with the AIDiffM AI
 	    AIDiffM();
 	}   
-    }
+    }//end method
+
     
     public static int PinputR() { //reads the user input for row and returns the input
 	System.out.print("what row? ");
@@ -194,7 +195,9 @@ public class Woo{
 	    row = Keyboard.readInt();
 	}
 	return row;
-    }
+    } //end method
+
+
     public static int PinputC() { //reads the user input for column and returns the input
 	System.out.print("what column? ");
 	int column = Keyboard.readInt();
@@ -205,7 +208,8 @@ public class Woo{
 	    column = Keyboard.readInt();
 	}
 	return column;
-    }
+    }//end method
+
 
     public static boolean isWin(){ //checks to see if there is a 3-in-a-row
     	for(String[] array: Board){ //checks across the rows to see if there is 3-in-a-row
@@ -248,9 +252,8 @@ public class Woo{
 	}// close if loop
 
     	return false;
-
-
     }//end method
+
 
     public static boolean isFull() { //checks to see if the Board is full of non-spaces
 	for (String[] row : Board) {
@@ -261,7 +264,7 @@ public class Woo{
 	    }
 	}
 	return true;
-    }
+    }//end method
 
 
     public static void chooseAIDifficulty(int difficulty){ //it executes the correct method according to the difficulty chosen
@@ -274,15 +277,15 @@ public class Woo{
 	if (difficulty == 3) {
 	    AIDiffH();
 	}
-    }
+    }//end method
+
 
     public static void gameIfPlayerFirst(int difficulty){  //plays the game if player goes first
 	Woo tic = new Woo();
 	System.out.println(tic);
-
         outer:
 	while (isFull() == false) {
-	    while (isWin() == false ) {
+	    while (isWin() == false ) { //while there aren't three in a row
 		int row = PinputR();
 		int column = PinputC();
 
@@ -307,35 +310,36 @@ public class Woo{
 		chooseAIDifficulty(difficulty); //uses parameter to choose difficulty
 		System.out.println("AI Move:");
 		System.out.print(tic);
-	
+	    }//close 2nd-inner while loop
 
-	    }
 	    if(isWin() == true){
 		System.out.println("Game Over. You lose.");
 		break outer;
 	    }
 	    
-	}
+	}//close outer-most while loop
 
     }//end method
 
-    public static void aiStart(int difficulty){ 
+
+    public static void aiStart(int difficulty){ //initiates the board if AI goes first, based on the difficulty
     	if(difficulty == 3){
 	    Board[1][1] = "O";
     	}
     	else{
 	    Board[(int) (Math.random() * 3)][(int) (Math.random() * 3)] = "O";
 	}
-    }
+    }//end method
+
 
     public static void gameIfAIFirst(int difficulty){ //plays the game if AI goes first
 	Woo tic = new Woo();
 	aiStart(difficulty);
 	System.out.println("AI Move:\n" + tic);
-
         outer:
 	while (isFull() == false) {
-	    while (isWin() == false ) {
+
+	    while (isWin() == false ) { //while there aren't 3 in a row
 
 		if (isFull() == true) { //checks for tie before the player moves because the AI will always be the one to fill up the board if it goes first
 		    System.out.println("It's a tie");
@@ -363,9 +367,8 @@ public class Woo{
 		chooseAIDifficulty(difficulty);
 		System.out.println("AI Move:");
 		System.out.print(tic);
-	
-
 	    }
+
 	    if(isWin() == true){ //if 3-in-a-row after AI moves, it means the AI wins
 		System.out.println("Game Over. You lose.");
 		break outer;
@@ -396,21 +399,19 @@ public class Woo{
 	    
 	if (coin == 0) {
 	    gameIfAIFirst(difficulty);
-	    }
+	}
 	
 	else {
 	    gameIfPlayerFirst(difficulty);
 	}
-    }
+    }//end method
 
 
 
-    public static void main(String[] args) {
-
-
+    public static void main(String[] args) { //main method
 	startGame();
 
-    }
+    }//close main method
     
     
 }
