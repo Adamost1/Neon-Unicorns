@@ -314,7 +314,8 @@ public class Woo{
 
     }//end method
 
-    public static void startGame() {
+    public static void startGame() { //starts off the game
+	System.out.println("\n\n==================================================================\nWelcome to Neon Unicorn's Tic-Tac-Toe in the terminal!\n==================================================================");
 	System.out.println("Choose your difficulty");
 	System.out.println("1. Easy\n2. Medium\n3. Hard");
 	int difficulty = Keyboard.readInt();
@@ -327,7 +328,7 @@ public class Woo{
 	    
 	}
 
-	int coin = (int) (Math.random() * 2);
+	int coin = (int) (Math.random() * 2); //randomly chooses who goes first
 
 	if (coin == 0) {
 	    gameIfAIFirst(difficulty);
@@ -336,7 +337,7 @@ public class Woo{
 	else {
 	    gameIfPlayerFirst(difficulty);
 	}
-    }
+    }//end method
 
 
 
@@ -345,10 +346,6 @@ public class Woo{
 
 	startGame();
 
-
-	//====================================IF PLAYER GOES FIRST==============
-	//gameIfPlayerFirst(difficulty);
-	//==================================================================================
     }
     
     
