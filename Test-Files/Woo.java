@@ -46,7 +46,6 @@ public class Woo{
 	while ( !(isEmpty(x - 1, y - 1))) {
 	    x = (int)(Math.random() * (Board.length) + 1);
 	    y = (int)(Math.random() * (Board[0].length) + 1);
-	    System.out.println("===========debugging==========\n" + x + "\t" + y + "\n===================");
 	}
 	Board[x - 1][y - 1] = "O";
     }
@@ -127,34 +126,64 @@ public class Woo{
 	    Board[1][1] = "O";
 	}
 	else if (isEmpty(0,0) && isEmpty(0,2) && isEmpty(2,0) && isEmpty(2,2)) {
-	    int checker = 1 + (int)(Math.random()* 4);
-	    switch (checker) {
-	    case 1: if (isEmpty(0,0)) {
-		    Board[0][0] = "O";
-		    return;
-		}
-		break;
-	    case 2: if (isEmpty(2,0)){
+	    if (Board[0][1].equals("X")) {
+		int coin = (int) Math.random() * 2;
+		if (coin == 0) {
 		    Board[2][0] = "O";
-		    return;
 		}
-		break;
-	    case 3: if (isEmpty(2,2)) {
+		else {
 		    Board[2][2] = "O";
-		    return;
-		}
-		break;
-	    case 4: if (isEmpty(0,2)) {
-		    Board[0][2] = "O";
-		    return;
 		}
 	    }
+	    
+	    else if (Board[2][1].equals("X")) {
+		int coin = (int) Math.random() * 2;
+		if (coin == 0) {
+		    Board[0][0] = "O";
+		}
+		else {
+		    Board[0][2] = "O";
+		}
+	    }
+
+	    else if (Board[1][0].equals("X")) {
+		int coin = (int) Math.random() * 2;
+		if (coin == 0) {
+		    Board[0][2] = "O";
+		}
+		else {
+		    Board[2][2] = "O";
+		}
+	    }
+
+	    else if (Board[1][2].equals("X")) {
+		int coin = (int) Math.random() * 2;
+		if (coin == 0) {
+		    Board[0][0] = "O";
+		}
+		else {
+		    Board[2][0] = "O";
+		}
+	    }
+	    else {
+		int coin = 1 + (int) (Math.random() * 4);
+		switch (coin) {
+		case 1: Board[0][0] = "O";
+		    break;
+		case 2: Board[0][2] = "O";
+		    break;
+		case 3: Board[2][0] = "O";
+		    break;
+		case 4: Board[2][2] = "O";
+		    break;
+		}
+	    }	    
 	}
 	else {
 	    AIDiffM();
 	}   
     }
-
+    
     public static int PinputR() { //reads the user input for row and returns the input
 	System.out.print("what row? ");
 	int row = Keyboard.readInt();
@@ -291,12 +320,11 @@ public class Woo{
     }//end method
 
     public static void aiStart(int difficulty){ 
-
     	if(difficulty == 3){
-	    AIDiffH();
+	    Board[1][1] = "O";
     	}
     	else{
-	    AIDiffM();
+	    Board[(int) (Math.random() * 3)][(int) (Math.random() * 3)] = "O";
 	}
     }
 
