@@ -7,26 +7,6 @@ pd 1
 Tic-Tac-Toe in the terminal
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
@@ -35,14 +15,15 @@ OBSTACLES OVERCOME
 - We made an AI for easy difficulty
 - We made an AI for medium difficulty
 - We coded a way to make the AI check for two of a certain element in a row, column, or diagonal
+- We made an AI for hard difficulty
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- AI for hard difficulty
+NONE
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 
+- Switch and case usage
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,7 +33,8 @@ We changed ___ to ___ bc...
 
 - we decided to make the tic-tac-toe game 1 player because it is more challenging to design an AI rather than allow the user to play as 2 people. It is also more logical and fun to play a 1 player tic-tac-toe.
 
-- we decided to move the code from the main method to multiple methods in order to make the code look neater. 
+- we decided to move the code from the main method to multiple methods in order to make the code look neater.
+
 
 
 
@@ -79,9 +61,43 @@ LESSONS LEARNED
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-yyyy-mm-dd
+2018-15-1
 --------------------------------------------------------------
-Alvin Ye :: <Thing member did.>
-Zane Wang :: <Thing member did.>
-Ahnaf Hasan :: <Thing member did.>
+Alvin Ye :: <Added proposal detailing future plans
+Added the devlog
+Updated proposal and the devlog
+Changed uml to flowchart
+Added a game-over system and a space-full system
+Corrected indentation
+Updated Woo.java
+Renamed flowchart
+Updated Woo.java to work with tie system
+Modified Woo.java to include AIDiffM()
+Included CheckTwo() inside AIDiffM()
+Updated AIDiffM()
+Added comments
+>
+Zane Wang :: <Edited devlog to personalize for the project
+Edited REAMME.md with more information and an aestethic update
+Added a better user interface and fixed issues with user input
+Uploaded flowchart, revised uml, and the to-do list
+Fixed the format of the bullets in todo.txt
+Updated Woo.java so isWin can detect diagonals as well
+Uploaded working Woo.java to root directory
+Udated todo.txt
+Implemented diagonal checks for wins and losses
+Implemented randomness to the game
+Completed AIDiffH()
+Fixed bugs in Woo.java and removed debug lines
+>
+Ahnaf Hasan :: <Added Keyboard.java and the cs1 package to be
+used in the tic-tac-toe game
+Added UML and modified the proposal
+Modified Woo.java to have the proto version of startGame()
+Made a Test Files location to test files
+Modified Woo.java to include an Easy AI with debug lines
+Aesthetic update
+Updated Woo.java with isFull() and a tie system
+Updated Woo.java with a proto version of AIDiffH()
+>
 ==============================================================
