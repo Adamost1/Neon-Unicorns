@@ -32,10 +32,13 @@ Flesh out each category whenever necessary, appropriate.
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Our proposal was too simple, so we decided to implement varying AI difficulty, and each AI with its own strategies
+- We made an AI for easy difficulty
+- We made an AI for medium difficulty
+- We coded a way to make the AI check for two of a certain element in a row, column, or diagonal
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 
+- AI for hard difficulty
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,9 +52,17 @@ We changed ___ to ___ bc...
 
 - we decided to make the tic-tac-toe game 1 player because it is more challenging to design an AI rather than allow the user to play as 2 people. It is also more logical and fun to play a 1 player tic-tac-toe.
 
+- we decided to move the code from the main method to multiple methods in order to make the code look neater. 
+
+
+
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<tales of wisdom gained...>
+- We learned that teamwork was very important in completing this project
+
+- We learned that COMMENTS were very useful in keeping track of our code, especially in this project
+
+
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

@@ -59,7 +59,6 @@ public class Woo{
 	    if(
 	       (Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
 	       (Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
-	       (Board[r][1].equals(Board[r][0]) && !(Board[r][1].equals(Board[r][2])) && !(Board[r][1].equals(" ")) ) ||
 	       (Board[r][1].equals(Board[r][2]) && !(Board[r][1].equals(Board[r][0])) && !(Board[r][1].equals(" ")) )     			
 	       )
     		{
@@ -77,7 +76,6 @@ public class Woo{
 	    if(
 	       (Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
 	       (Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
-	       (Board[1][c].equals(Board[0][c]) && !(Board[1][c].equals(Board[2][c])) && !(Board[1][c].equals(" ")) ) ||
 	       (Board[1][c].equals(Board[2][c]) && !(Board[1][c].equals(Board[0][c])) && !(Board[1][c].equals(" ")) )     			
 	       )
     		{
@@ -90,33 +88,34 @@ public class Woo{
     		}//close if
 	}//close for
 
-	for (int c = 1; c < Board.length - 1; c ++) {
-	    if (
-		(Board[c][c].equals(Board[c - 1][c - 1]) && !(Board[c][c].equals(Board[c + 1][c + 1])) && !(Board[c][c].equals(" ")) ) ||
-		(Board[c][c].equals(Board[c + 1][c + 1]) && !(Board[c][c].equals(Board[c - 1][c - 1])) && !(Board[c][c].equals(" ")) ) ||
-		(Board[c + 1][c + 1].equals(Board[c - 1][c - 1]) && !(Board[c][c].equals(Board[c + 1][c + 1])) && !(Board[c + 1][c + 1].equals(" ")) )) {
-		for(int r = 0; r < Board.length; r ++) {
-		    if (Board[r][r].equals(" ")) {
-			Board[r][r] = "O";
+	    if ( //checks the first diagonal, going from top left to bottom right, for 2 elements 
+		(Board[0][0].equals(Board[1][1]) && !(Board[0][0].equals(Board[2][2])) && !(Board[0][0].equals(" ")) ) ||
+		(Board[0][0].equals(Board[2][2]) && !(Board[0][0].equals(Board[1][1])) && !(Board[0][0].equals(" ")) ) ||
+		(Board[1][1].equals(Board[2][2]) && !(Board[1][1].equals(Board[0][0])) && !(Board[1][1].equals(" ")) )
+		) 
+		{
+		for(int i = 0; i < Board.length; i ++) {
+		    if (Board[i][i].equals(" ")) {
+			Board[i][i] = "O";
 			return;
 		    }
 		}
 	    }// closes if
 
 	    if (		
-		(Board[c][c].equals(Board[c - 1][c + 1]) && !(Board[c][c].equals(Board[c + 1][c - 1])) && !(Board[c][c].equals(" ")) ) ||
-		(Board[c][c].equals(Board[c + 1][c - 1]) && !(Board[c][c].equals(Board[c - 1][c + 1])) && !(Board[c][c].equals(" ")) ) ||
-		(Board[c + 1][c - 1].equals(Board[c - 1][c + 1]) && !(Board[c][c].equals(Board[c + 1][c - 1])) && !(Board[c + 1][c - 1].equals(" ")) )
+		(Board[0][2].equals(Board[1][1]) && !(Board[0][2].equals(Board[2][0])) && !(Board[0][2].equals(" ")) ) ||
+		(Board[0][2].equals(Board[2][0]) && !(Board[0][2].equals(Board[1][1])) && !(Board[0][2].equals(" ")) ) ||
+		(Board[1][1].equals(Board[2][0]) && !(Board[1][1].equals(Board[0][2])) && !(Board[1][1].equals(" ")) )
 		)
 		{
-		    for(int r = 0; r < Board.length; r ++){
-			if (Board[r][2 - r].equals(" ")){
-			    Board[r][2 - r] = "O";
+		    for(int i = 0; i < Board.length; i ++){
+			if (Board[i][2 - i].equals(" ")){
+			    Board[i][2 - i] = "O";
 			    return;
 			}
 		    }
 		}
-	}
+	
 	
 
 	AIDiffE(); //resorts to AIDiffE(), or random moves when there are not two elements in a row or column
