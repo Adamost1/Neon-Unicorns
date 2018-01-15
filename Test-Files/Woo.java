@@ -53,44 +53,43 @@ public class Woo{
 
     public static void AIDiffM(){
 
-    	int counter = 0;
-    	int row = 0;
-    	int column = 0;
 
+    	for(int r = 0; r < Board.length; r ++){//checks row by row for two in a row
 
-    	for(int r = 0; r < Board.length; r ++){ //checks row by row for two-in-a-row
-    		counter = 0;
-    		for(int c = 0; c < Board.length; c ++){
-    			if(Board[r][c].equals(" ")){
-    				counter ++;
-    				row = r;
-    				column = c;
+    		if(
+    			(Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
+    			(Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
+    			(Board[r][1].equals(Board[r][0]) && !(Board[r][1].equals(Board[r][2])) && !(Board[r][1].equals(" ")) ) ||
+    			(Board[r][1].equals(Board[r][2]) && !(Board[r][1].equals(Board[r][0])) && !(Board[r][1].equals(" ")) )     			
+    			)
+    		{
+    			for(int c = 0; c < Board.length; c ++){
+    				if(Board[r][c].equals(" ")){
+    					Board[r][c] = "O";
+    					return;
+    				}
     			}
-    		}
+    		}//close if
+		}//close for
 
-    	}//close for loop
+    	for(int c = 0; c < Board.length; c ++){//checks column by column for two in a row
 
-    		if(counter == 1){
-    			Board[row][column] = "O";
-    			return;
-    		}
- 
-
-	    	for(int c = 0; c < Board.length; c ++){ //checks column by column for two-in-a-row
-    		counter = 0;
-    		for(int r = 0; r < Board.length; r ++){
-    			if(Board[r][c].equals(" ")){
-    				counter ++;
-    				row = r;
-    				column = c;
+    		if(
+    			(Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
+    			(Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
+    			(Board[1][c].equals(Board[0][c]) && !(Board[1][c].equals(Board[2][c])) && !(Board[1][c].equals(" ")) ) ||
+    			(Board[1][c].equals(Board[2][c]) && !(Board[1][c].equals(Board[0][c])) && !(Board[1][c].equals(" ")) )     			
+    			)
+    		{
+    			for(int r = 0; r < Board.length; r ++){
+    				if(Board[r][c].equals(" ")){
+    					Board[r][c] = "O";
+    					return;
+    				}
     			}
-    		}
-    	}//close for loop
+    		}//close if
+		}//close for
 
-    		if(counter == 1){
-    			Board[row][column] = "O";
-    			return;
-    		}
 
  		AIDiffE();
 
