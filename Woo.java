@@ -26,9 +26,7 @@ public class Woo{
 	    }
 	    retVal = (retVal.substring(0,retVal.length() - 1) + " \n");
 	    retVal += ("_________\n");
-	}//end method
-
-
+	}
 	return retVal.substring(0, retVal.length() - 10);
     }//end method
 
