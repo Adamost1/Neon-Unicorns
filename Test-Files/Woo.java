@@ -40,38 +40,6 @@ public class Woo{
     }//end method
 
 
-    public static void checkForTwoInARow(){ 
-    	int counter;
-    	int row = 0;
-    	int column = 0;
-
-    	for(int r = 0; r < Board.length; r ++){ //checks row by row
-    		counter = 0;
-    		for(int c = 0; c < Board.length; c ++){
-    			if(Board[r][c].equals(" ")){
-    				counter ++;
-    				row = r;
-    				column = c;
-    			}
-    		}
-    		if(counter == 1){
-    			Board[row][column] = "O";
-    		}    		
-    	}//close for loop
-
-
-    }//close method
-
-public static int checkForTwoInAColumn(){
-	int counter;
-    	int row = 0;
-    	int column = 0;
-
-return -1;
-}
-
-
-
     public static void AIDiffE() { //AI strategy for easy mode
 	int x = (int)(Math.random() * (Board.length) + 1);
 	int y = (int)(Math.random() * (Board[0].length) + 1);
