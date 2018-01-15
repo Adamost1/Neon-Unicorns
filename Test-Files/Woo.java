@@ -123,7 +123,105 @@ public class Woo{
 
 
     }
-    
+    public static void AIDiffH() {
+	if (isEmpty(1,1)) {
+	    Board[1][1] = "O";
+	}else{
+	    int checker = 1 + (int)(Math.random()* 4);
+	    switch (checker) {
+	    case 1: if (isEmpty(0,0)) {
+		    Board[0][0] = "O";
+		    return;
+		}
+		break;
+	    case 2: if (isEmpty(2,0)){
+		    Board[2][0] = "O";
+		    return;
+		}
+		break;
+	    case 3: if (isEmpty(2,2)) {
+		    Board[2][2] = "O";
+		    return;
+		}
+		break;
+	    case 4: if (isEmpty(0,2)) {
+		    Board[0][2] = "O";
+		    return;
+		}
+		break;
+	    }
+	    if (!(isEmpty(0,0)) && !(isEmpty(0,2)) && !(isEmpty(2,2)) && !(isEmpty(2,0))) {
+		if ( Board[0][0] == "O" && Board[2][0] == "O") {
+		    Board[1][0] = "O";
+		}
+	    }
+	}
+    }
+    public static void HelperAIDiffH() {
+	for(int r = 0; r < Board.length; r ++){//checks row by row for two in a row
+	    
+	    if(
+	       (Board[r][0].equals(Board[r][1]) && !(Board[r][0].equals(Board[r][2])) && !(Board[r][0].equals(" ")) ) ||
+	       (Board[r][0].equals(Board[r][2]) && !(Board[r][0].equals(Board[r][1])) && !(Board[r][0].equals(" ")) ) ||
+	       (Board[r][1].equals(Board[r][2]) && !(Board[r][1].equals(Board[r][0])) && !(Board[r][1].equals(" ")) )     			
+	       )
+    		{
+		    for(int c = 0; c < Board.length; c ++){
+			if(Board[r][c].equals(" ")){
+			    Board[r][c] = "O";
+			    return;
+			}
+		    }
+    		}//close if
+	}//close for
+	
+    	for(int c = 0; c < Board.length; c ++){//checks column by column for two in a column
+	    
+	    if(
+	       (Board[0][c].equals(Board[1][c]) && !(Board[0][c].equals(Board[2][c])) && !(Board[0][c].equals(" ")) ) ||
+	       (Board[0][c].equals(Board[2][c]) && !(Board[0][c].equals(Board[1][c])) && !(Board[0][c].equals(" ")) ) ||
+	       (Board[1][c].equals(Board[2][c]) && !(Board[1][c].equals(Board[0][c])) && !(Board[1][c].equals(" ")) )     			
+	       )
+    		{
+		    for(int r = 0; r < Board.length; r ++){
+			if(Board[r][c].equals(" ")){
+			    Board[r][c] = "O";
+			    return;
+			}
+		    }
+    		}//close if
+	}//close for
+	
+	if ( //checks the first diagonal, going from top left to bottom right, for 2 elements 
+	    (Board[0][0].equals(Board[1][1]) && !(Board[0][0].equals(Board[2][2])) && !(Board[0][0].equals(" ")) ) ||
+	    (Board[0][0].equals(Board[2][2]) && !(Board[0][0].equals(Board[1][1])) && !(Board[0][0].equals(" ")) ) ||
+	    (Board[1][1].equals(Board[2][2]) && !(Board[1][1].equals(Board[0][0])) && !(Board[1][1].equals(" ")) )
+	     ) 
+	    {
+		for(int i = 0; i < Board.length; i ++) {
+		    if (Board[i][i].equals(" ")) {
+			Board[i][i] = "O";
+			return;
+		    }
+		}
+	    }// closes if
+	
+	if (		
+	    (Board[0][2].equals(Board[1][1]) && !(Board[0][2].equals(Board[2][0])) && !(Board[0][2].equals(" ")) ) ||
+	    (Board[0][2].equals(Board[2][0]) && !(Board[0][2].equals(Board[1][1])) && !(Board[0][2].equals(" ")) ) ||
+	    (Board[1][1].equals(Board[2][0]) && !(Board[1][1].equals(Board[0][2])) && !(Board[1][1].equals(" ")) )
+			)
+	    {
+		for(int i = 0; i < Board.length; i ++){
+		    if (Board[i][2 - i].equals(" ")){
+			Board[i][2 - i] = "O";
+			return;
+		    }
+		}
+	    }
+	
+	
+    }
     public static int PinputR() { //reads the user input for row and returns the input
 	System.out.print("what row? ");
 	int row = Keyboard.readInt();
@@ -211,6 +309,9 @@ public class Woo{
     	if(difficulty == 2){
 	    AIDiffM();
     	}
+	if (difficulty == 3) {
+	    AIDiffH();
+	}
     }
 
     public static void gameIfPlayerFirst(int difficulty){  //plays the game if player goes first
@@ -259,7 +360,8 @@ public class Woo{
     public static void aiStart(int difficulty){ 
 
     	if(difficulty == 3){
-	    Board[2][2] = "O";
+	    //Board[2][2] = "O";
+	    AIDiffH();
     	}
     	else{
 	    Board[(int) (Math.random() * 3)][ (int) (Math.random() * 3)] = "O";
