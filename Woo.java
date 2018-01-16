@@ -2,7 +2,7 @@ import cs1.Keyboard;
 
 public class Woo{
 
-    public static String[][] Board;
+    private static String[][] Board;
 
     public Woo(){ //constructor 
 	Board = new String[3][3];
