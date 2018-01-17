@@ -177,6 +177,25 @@ public class Woo{
 	    }//close else	
 
 	}
+	else if (isEmpty(1,0) && isEmpty(0,1) && isEmpty(1,2) && isEmpty(2,1)) {
+	    if ((Board[0][0].equals("X") && Board[2][2].equals("X") && Board[1][1].equals("O")) || (Board[0][2].equals("X") && Board[2][0].equals("X") && Board[1][1].equals("O"))) {// if there is a diagonal of 2 X with a O between
+		int coin = 1 + (int) (Math.random() * 4);
+		switch (coin) {// goes to a random side, not a diagonal
+		case 1: Board[1][0] = "O";
+		    break;
+		case 2: Board[2][1] = "O";
+		    break;
+		case 3: Board[0][1] = "O";
+		    break;
+		case 4: Board[1][2] = "O";
+		    break;
+		}
+	    }
+	    else {
+		AIDiffM();
+	    }
+	}
+	
 	else { //once the "death trap" is set up, it will proceed with the AIDiffM AI
 	    AIDiffM();
 	}   
