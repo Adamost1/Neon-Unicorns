@@ -99,5 +99,7 @@ Modified Woo.java to include an Easy AI with debug lines
 Aesthetic update
 Updated Woo.java with isFull() and a tie system
 Updated Woo.java with a proto version of AIDiffH()
+Updated Woo.java to include a looping-over to play again
+Updated Woo.java with cheat codes: 47 for row and 42 for column
 >
 ==============================================================

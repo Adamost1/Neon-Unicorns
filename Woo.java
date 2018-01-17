@@ -188,7 +188,7 @@ public class Woo{
     public static int PinputR() { //reads the user input for row and returns the input
 	System.out.print("what row? ");
 	int row = Keyboard.readInt();
-	while (row != 1 && row != 2 && row != 3) {
+	while (row != 1 && row != 2 && row != 3 && row != 47) {
 	    System.out.println("Not a viable option");
 	    System.out.println("Please input a row from 1-3");
 	    System.out.print("What row? ");
@@ -201,7 +201,7 @@ public class Woo{
     public static int PinputC() { //reads the user input for column and returns the input
 	System.out.print("what column? ");
 	int column = Keyboard.readInt();
-	while (column != 1 && column != 2 && column != 3) {
+	while (column != 1 && column != 2 && column != 3 && column != 42) {
 	    System.out.println("Not a viable option");
 	    System.out.println("Please input a column from 1-3");
 	    System.out.print("What column? ");
@@ -288,6 +288,17 @@ public class Woo{
 	    while (isWin() == false ) { //while there aren't three in a row
 		int row = PinputR();
 		int column = PinputC();
+		//CHEATS
+		if (row == 47 && column == 42) {  //cheat codes section
+		    for (int i = 0; i < Board.length; i++) {
+			for (int j = 0; j < Board[0].length; j++) {
+			    Board[i][j] = "X";
+			}
+		    }
+		    System.out.println(tic);
+		    System.out.println("YOU WIN!");
+		    break outer;
+		}//END CHEATS
 
 		while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
 		    System.out.println( "Pick an empty spot!");
@@ -345,10 +356,19 @@ public class Woo{
 		    System.out.println("It's a tie");
 		    break outer;
 		}
-
-		int row = PinputR();
+		//CHEATS
+		int row = PinputR();   //cheat codes section
 		int column = PinputC();
-
+		if (row == 47 && column == 42) {
+		    for (int i = 0; i < Board.length; i++) {
+			for (int j = 0; j < Board[0].length; j++) {
+			    Board[i][j] = "X";
+			}
+		    }
+		    System.out.println(tic);
+		    System.out.println("YOU WIN!");
+		    break outer;
+		}//END CHEATS
 		while(  isEmpty(row - 1, column - 1) == false ){    //prints message if the player chooses coordinates of an occupied spot
 		    System.out.println( "Pick an empty spot!");
 		    row = PinputR();
@@ -380,7 +400,7 @@ public class Woo{
     }//end method
 
     public static void startGame() { //starts off the game
-	System.out.println("\n\n==================================================================\nWelcome to Neon Unicorn's Tic-Tac-Toe in the terminal!\n==================================================================");
+	System.out.println("==================================================================");
 	System.out.println("Choose your difficulty");
 	System.out.println("1. Easy\n2. Medium\n3. Hard");
 	int difficulty = Keyboard.readInt();
@@ -409,7 +429,21 @@ public class Woo{
 
 
     public static void main(String[] args) { //main method
+	int pa = 0;
+	System.out.println("\n\n==================================================================\nWelcome to Neon Unicorn's Tic-Tac-Toe in the terminal!\n");
 	startGame();
+	System.out.println("\nPlay Again?");
+	System.out.println("1: Yes\n2: No");
+	pa = Keyboard.readInt();
+	while (pa != 1 && pa != 2 ) {
+	    System.out.println("Please enter either 1 or 2");
+	    System.out.println("\nPlay Again?");
+	    System.out.println("1: Yes\n2: No");
+	    pa = Keyboard.readInt();
+	}
+	if (pa == 1) {
+	    startGame();
+	}
 
     }//close main method
     
