@@ -2,7 +2,7 @@ import cs1.Keyboard;
 
 public class Woo{
 
-    public static String[][] Board;
+    private static String[][] Board;
 
     public Woo(){ //constructor 
 	Board = new String[3][3];
@@ -26,9 +26,7 @@ public class Woo{
 	    }
 	    retVal = (retVal.substring(0,retVal.length() - 1) + " \n");
 	    retVal += ("_________\n");
-	}//end method
-
-
+	}
 	return retVal.substring(0, retVal.length() - 10);
     }//end method
 
